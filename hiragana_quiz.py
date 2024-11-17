@@ -128,6 +128,7 @@ class HiraganaQuizApp(QWidget):
         for var in self.checkbox_vars.values():
             var.setChecked(False)
 
+#Just a test comment here...
 
 # Main execution
 if __name__ == "__main__":
