@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hiragana Quiz</title>
     <style>
+        /* Reset some default styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -14,50 +21,108 @@
             margin: 0;
             background-color: #f7f7f7;
         }
+
         .container {
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
+            padding: 20px;
+            margin: 0 auto;
         }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
         .character {
             font-size: 48px;
             margin: 20px 0;
         }
+
         .feedback {
             font-size: 18px;
             margin: 10px 0;
         }
+
         .input {
             font-size: 24px;
             padding: 5px;
             width: 100%;
         }
+
         .button {
             padding: 10px;
             margin: 10px 5px;
             cursor: pointer;
         }
+
+        /* Grid for checkboxes */
         .checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
             text-align: left;
             margin: 20px 0;
+            overflow-x: hidden;
+            padding: 0;
         }
+
         .checkboxes label {
-            display: block;
             font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .checkboxes input {
+            margin-right: 8px;
+        }
+
+        /* Mobile specific styling */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .character {
+                font-size: 36px;
+            }
+
+            .feedback {
+                font-size: 16px;
+            }
+
+            .button {
+                padding: 8px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Hiragana Quiz</h1>
+
+        <!-- Checkbox Section -->
         <div class="checkboxes">
             <h3>Select Hiragana Characters:</h3>
             {% for char, romaji in hiragana.items() %}
-                <label><input type="checkbox" value="{{ char }}" checked> {{ char }}</label>
+                <label>
+                    <input type="checkbox" value="{{ char }}" checked> {{ char }}
+                </label>
             {% endfor %}
         </div>
+
+        <!-- Display Character Section -->
         <div class="character" id="character-display">?</div>
+
+        <!-- User Input Section -->
         <input type="text" class="input" id="user-input" placeholder="Enter romaji">
+
+        <!-- Feedback Section -->
         <div class="feedback" id="feedback"></div>
+
+        <!-- Buttons Section -->
         <button class="button" id="submit-button">Submit</button>
         <button class="button" id="next-button">Next</button>
         <button class="button" id="select-all-button">Select All</button>

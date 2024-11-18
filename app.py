@@ -42,4 +42,5 @@ def check_answer():
         return jsonify({'feedback': f'Incorrect! The correct answer is: {correct_answer}', 'color': 'red'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Running the app with host '0.0.0.0' allows it to be accessed externally
+    app.run(host='0.0.0.0', port=5000, debug=False)
